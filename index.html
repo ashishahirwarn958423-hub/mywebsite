@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>आशीष भारतीय | पर्सनल पोर्टफोलियो</title>
+    <title>आशीष अहिरवार | पर्सनल पोर्टफोलियो</title>
     <!-- गूगल से मॉडर्न फॉन्ट -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
@@ -78,15 +78,49 @@
 
         /* मुख्य बैनर */
         .hero-section {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             padding: 0 8%;
-            padding-top: 80px;
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* मुख्य प्रोफाइल फोटो */
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #ffffff;
+            box-shadow: 0 10px 30px rgba(122, 14, 238, 0.15);
+            background-color: #e9ecef;
         }
 
         .gradient-text {
-          r  background: linear-gadient(45deg, #7a0eee, #00b4db);
+            background: linear-gradient(45deg, #7a0eee, #00b4db);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 600;
@@ -112,7 +146,7 @@
         }
 
         .personal-info {
-            font-size: 16px;
+            font-size: 15px;
             color: #495057;
             margin-bottom: 25px;
             font-weight: 600;
@@ -120,8 +154,9 @@
             display: inline-block;
             padding: 8px 18px;
             border-radius: 20px;
+            line-height: 1.6;
         }
-        .personal-info span { margin-right: 20px; }
+        .personal-info span { margin-right: 20px; display: inline-block; }
 
         .hero-content p {
             color: #6c757d;
@@ -132,13 +167,14 @@
         }
 
         /* बटन्स */
-        .btn-group { display: flex; gap: 20px; }
+        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; }
         .btn {
             padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: 0.4s ease;
+            text-align: center;
         }
         .btn-primary {
             background: linear-gradient(45deg, #7a0eee, #00b4db);
@@ -195,6 +231,36 @@
             transform: translateY(-8px);
             border-color: #7a0eee;
             box-shadow: 0 10px 25px rgba(122, 14, 238, 0.08);
+        }
+
+        /* गैलरी स्टाइल */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.01);
+            transition: 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-color: #e9ecef;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         /* म्यूजिक प्लेयर */
@@ -268,6 +334,7 @@
         <nav>
             <a href="#home">होम</a>
             <a href="#about">मेरा परिचय</a>
+            <a href="#gallery">मेरी फोटो</a>
             <a href="#music">म्यूजिक स्टूडियो</a>
             <a href="#contact">संपर्क करें</a>
         </nav>
@@ -275,21 +342,28 @@
 
     <!-- मुख्य हीरो सेक्शन -->
     <section id="home" class="hero-section">
-        <div class="hero-content">
-            <h4 class="gradient-text">Welcome To My Portfolio</h4>
-            <h1>नमस्ते, मैं हूँ <span class="highlight">आशीष भारतीय</span></h1>
-            <h2>B.Sc. Student | <span class="music-text">Digital Expert & Music Producer</span></h2>
-            
-            <!-- संपर्क और पता -->
-            <div class="personal-info">
-                <span>📞 8815488939,9926330796</span>
-                <span>📍 ग्राम: उहर ganj basoda dit. Vidisha </span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h4 class="gradient-text">Welcome To My Portfolio</h4>
+                <h1>नमस्ते, मैं हूँ <span class="highlight">आशीष अहिरवार</span></h1>
+                <h2>B.Sc. Student | <span class="music-text">Digital Expert & Music Producer</span></h2>
+                
+                <!-- संपर्क और पता -->
+                <div class="personal-info">
+                    <span>📞 8815488939, 9926330796</span><br>
+                    <span>📍 ग्राम उहर, गंजबासौदा, जिला विदिशा, मध्य प्रदेश</span>
+                </div>
+
+                <p>मैं वर्तमान में अपनी ग्रेजुएशन (B.Sc. First Year) की पढ़ाई कर रहा हूँ। पढ़ाई के साथ-साथ मैं कंप्यूटर और इंटरनेट से जुड़े सभी ऑनलाइन कार्य पूरी जिम्मेदारी से करता हूँ, साथ ही मुझे मेडिकल क्षेत्र और म्यूजिक Production का भी अच्छा व्यावहारिक ज्ञान है।</p>
+                <div class="btn-group">
+                    <a href="#about" class="btn btn-primary">मेरा पूरा परिचय देखें</a>
+                    <a href="#contact" class="btn btn-secondary">काम के लिए संपर्क करें</a>
+                </div>
             </div>
 
-            <p>मैं वर्तमान में अपनी ग्रेजुएशन (B.Sc. First Year) की पढ़ाई कर रहा हूँ। पढ़ाई के साथ-साथ मैं कंप्यूटर और इंटरनेट से जुड़े सभी ऑनलाइन कार्य पूरी जिम्मेदारी से करता हूँ, साथ ही मुझे मेडिकल क्षेत्र और म्यूजिक प्रोडक्शन का भी अच्छा व्यावहारिक ज्ञान है।</p>
-            <div class="btn-group">
-                <a href="#about" class="btn btn-primary">मेरा पूरा परिचय देखें</a>
-                <a href="#contact" class="btn btn-secondary">काम के लिए संपर्क करें</a>
+            <!-- मुख्य प्रोफाइल फोटो (इसे आप pic1.jpg रख सकते हैं) -->
+            <div class="hero-image">
+                <img src="pic1.jpg" alt="आशीष अहिरवार">
             </div>
         </div>
     </section>
@@ -317,12 +391,41 @@
                 <p>मुझे मेडिकल फील्ड के बारे में भी थोड़ा-बहुत अच्छा व्यावहारिक ज्ञान है। प्राथमिक उपचार और दवाइयों की सामान्य समझ रखता हूँ।</p>
             </div>
 
-            <!-- कार्ड 4: कोडिंग और डिज़ाइन -->
+            <!-- CARD 4: कोडिंग और डिज़ाइन -->
             <div class="skill-card">
                 <h3>💻 वेब डेवलपमेंट</h3>
                 <p>HTML5 और CSS3 का उपयोग करके खुद कोड लिखना और सुंदर, आधुनिक वेबसाइट्स डिज़ाइन करना सीख रहा हूँ।</p>
             </div>
 
+        </div>
+    </section>
+
+    <!-- फोटो गैलरी सेक्शन (यहाँ आपकी सभी फोटो दिखेंगी) -->
+    <section id="gallery" class="gallery-section">
+        <h3 class="section-title">मेरी <span>फोटो गैलरी</span></h3>
+        <p class="subtitle">यहाँ मेरी कुछ चुनिंदा तस्वीरें हैं:</p>
+        
+        <div class="gallery-container">
+            <!-- पहली फोटो -->
+            <div class="gallery-item">
+                <img src="pic1.jpg" alt="आशीष अहिरवार 1">
+            </div>
+            <!-- दूसरी फोटो -->
+            <div class="gallery-item">
+                <img src="pic2.jpg" alt="आशीष अहिरवार 2">
+            </div>
+            <!-- तीसरी फोटो -->
+            <div class="gallery-item">
+                <img src="pic3.jpg" alt="आशीष अहिरवार 3">
+            </div>
+            <!-- चौथी फोटो -->
+            <div class="gallery-item">
+                <img src="pic4.jpg" alt="आशीष अहिरवार 4">
+            </div>
+            <!-- पांचवीं फोटो -->
+            <div class="gallery-item">
+                <img src="pic5.jpg" alt="आशीष अहिरवार 5">
+            </div>
         </div>
     </section>
 
@@ -358,17 +461,17 @@
             <h3 class="section-title">क्या आप साथ <span>काम करना चाहते हैं?</span></h3>
             <p>यदि आपको कोई ऑनलाइन फॉर्म भरवाना हो, कंप्यूटर से जुड़ा काम हो, वेबसाइट बनवानी हो या अन्य कोई पूछताछ हो, तो बेझिझक संपर्क करें।</p>
             
-            <p style="margin-bottom: 25px; font-size: 18px; font-weight: 700; color: #7a0eee;">
-                📞 फोन नंबर: 8815488939,9926330796 <br>
-                📍 पता: ग्राम उहर Ganj Basoda Dit. Vidisha
+            <p style="margin-bottom: 25px; font-size: 16px; font-weight: 700; color: #7a0eee; line-height: 1.8;">
+                📞 फोन नंबर: 8815488939, 9926330796 <br>
+                📍 पता: ग्राम उहर, गंजबासौदा, जिला विदिशा, मध्य प्रदेश
             </p>
             
-            <a href="mailto:your-email@gmail.com" class="contact-btn">✉️ सीधे ईमेल भेजें</a>
+            <a href="mailto:ashishahirwarn958423@gmail.com" class="contact-btn">✉️ सीधे ईमेल भेजें</a>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 आशीष भारतीय. सभी अधिकार सुरक्षित हैं।</p>
+        <p>© 2026 आशीष अहिरवार. सभी अधिकार सुरक्षित हैं।</p>
     </footer>
 
 </body>
