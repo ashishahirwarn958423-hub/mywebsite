@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>प्रीमियम 3D ग्राहक विवरण फ़ॉर्म</title>
+    <style>
+        /* Premium Light Theme Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3f5f9, #e2e8f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Sophisticated 3D Light Container */
+        .form-container {
+            background: #ffffff;
+            max-width: 750px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), 
+                        0 5px 15px rgba(0, 0, 0, 0.03),
+                        inset 0 -4px 0px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 2px dashed #eef2f5;
+            padding-bottom: 20px;
+        }
+
+        .form-header h2 {
+            color: #2c3e50;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        /* Form Layout Sections */
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            margin-left: 15px;
+            height: 2px;
+            background: linear-gradient(90deg, #6c5ce7, transparent);
+        }
+
+        /* Responsive Grid */
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            grid-column: span 2;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* Form Groups and Dynamic Input Styling */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 13.5px;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        /* NEW: Beautiful Colored & Styled Input Boxes */
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            padding: 13px 16px;
+            font-size: 15px;
+            color: #2d3748;
+            background: #fdfdfd;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        /* Dropdown options custom styling */
+        .form-group select option {
+            background-color: #ffffff;
+            color: #2d3748;
+            padding: 10px;
+        }
+
+        /* NEW: Vibrant Pop-out Focus Effect (जब यूज़र टाइप करेगा) */
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: #6c5ce7;
+            background: #ffffff;
+            color: #1a1a2e;
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.2), 
+                        inset 0 1px 1px rgba(255,255,255,1);
+            transform: translateY(-3px) scale(1.01);
+        }
+
+        /* NEW: Success Color Design (जानकारी सही भरने पर बॉर्डर हरा होगा) */
+        .form-group input:valid:not(:placeholder-shown),
+        .form-group textarea:valid:not(:placeholder-shown) {
+            border-color: #2ecc71;
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Stylish 3D Interactive Button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.35), 
+                        inset 0 -4px 0px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.45), 
+                        inset 0 -4px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 10px rgba(108, 92, 231, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 650px) {
+            .input-grid, .location-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width, .location-grid {
+                grid-column: span 1;
+            }
+            .form-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="form-header">
+        <h2>ग्राहक विवरण फ़ॉर्म</h2>
+        <p>कृपया नीचे दिए गए आकर्षक फ़ॉर्म में सही विवरण दर्ज करें।</p>
+    </div>
+
+    <form action="#" method="POST">
+        
+        <div class="form-section">
+            <div class="section-title">व्यक्तिगत विवरण (Personal Details)</div>
+            <div class="input-grid">
+                
+                <div class="form-group">
+                    <label for="name">पूरा नाम (Full Name) *</label>
+                    <input type="text" id="name" name="name" placeholder="नाम लिखें" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">मोबाइल नंबर (Mobile No.) *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="10 अंकों का नंबर" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="email">ईमेल आईडी (Email ID)</label>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                </div>
+
+                <div class="location-grid">
+                    <div class="form-group">
+                        <label for="state">राज्य (State) *</label>
+                        <select id="state" name="state" required onchange="updateDistricts()">
+                            <option value="" disabled selected hidden>राज्य चुनें</option>
+                            <option value="MP">मध्य प्रदेश (Madhya Pradesh)</option>
+                            <option value="UP">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="district">जिला (District) *</label>
+                        <select id="district" name="district" required onchange="updateTehsils()">
+                            <option value="" disabled selected hidden>पहले राज्य चुनें</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tehsil">तहसील (Tehsil) *</label>
+                        <select id="tehsil" name="tehsil" required onchange="updateVillages()">
+                            <option value="" disabled selected hidden>पहले जिला चुनें</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="village">ग्राम / शहर (Village/City) *</label>
+                        <select id="village" name="village" required>
+                            <option value="" disabled selected hidden>पहले तहसील चुनें</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="address">स्थाई मकान नंबर / गली विवरण</label>
+                    <textarea id="address" name="address" placeholder="गली नंबर, मकान नंबर, या लैंडमार्क..." required></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">शैक्षणिक योग्यता (Educational Details)</div>
+            <div class="input-grid">
+                
+                <div class="form-group">
+                    <label for="education">उच्चतम शिक्षा (Highest Qualification) *</label>
+                    <select id="education" name="education" required>
+                        <option value="" disabled selected hidden>चुनें (Select)</option>
+                        <option value="10th">10वीं (High School)</option>
+                        <option value="12th">12वीं (Higher Secondary)</option>
+                        <option value="Graduate">स्नातक (Graduation)</option>
+                        <option value="Post Graduate">स्नातकोत्तर (Post Graduation)</option>
+                        <option value="Diploma">डिप्लोमा (Diploma)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="stream">विषय / स्ट्रीम (Stream)</label>
+                    <input type="text" id="stream" name="stream" placeholder="जैसे: Math, Biology, Computer Science" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="college">स्कूल / कॉलेज का नाम</label>
+                    <input type="text" id="college" name="college" placeholder="संस्थान का नाम दर्ज करें" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="skills">कंप्यूटर स्किल्स या अन्य सर्टिफिकेट</label>
+                    <input type="text" id="skills" name="skills" placeholder="जैसे: Basic Computer, Typing Speed, PGDCA आदि" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">विवरण सुरक्षित करें</button>
+    </form>
+</div>
+
+<script>
+    // Data Structure for Dropdowns
+    const locationData = {
+        "MP": {
+            "विदिशा": {
+                "गंजबासौदा": ["उहर ग्राम", "बरेठ", "गमाकर", "नगर क्षेत्र बासौदा"],
+                "ग्यारसपुर": ["मनोरा", "हैदरगढ़", "ग्यारसपुर खास"],
+                "सिरोंज": ["पचोरा", "दीपनाखेड़ा", "शहर क्षेत्र सिरोंज"],
+                "नटेरन": ["राठौर", "बरोदिया"]
+            },
+            "भोपाल": {
+                "हुजूर": ["बैरागढ़", "कोलार"],
+                "बैरसिया": ["नज़ीराबाद", "गुनगा"]
+            }
+        },
+        "UP": {
+            "झांसी": {
+                "मऊरानीपुर": ["भदौरकर", "रौनी"],
+                "मठ": ["अमरा", "चिरगाँव"]
+            }
+        }
+    };
+
+    function updateDistricts() {
+        const stateSelect = document.getElementById("state");
+        const districtSelect = document.getElementById("district");
+        const tehsilSelect = document.getElementById("tehsil");
+        const villageSelect = document.getElementById("village");
+
+        districtSelect.innerHTML = '<option value="" disabled selected hidden>जिला चुनें</option>';
+        tehsilSelect.innerHTML = '<option value="" disabled selected hidden>पहले जिला चुनें</option>';
+        villageSelect.innerHTML = '<option value="" disabled selected hidden>पहले तहसील चुनें</option>';
+
+        const selectedState = stateSelect.value;
+        if (selectedState && locationData[selectedState]) {
+            for (let district in locationData[selectedState]) {
+                let option = document.createElement("option");
+                option.value = district;
+                option.text = district;
+                districtSelect.add(option);
+            }
+        }
+    }
+
+    function updateTehsils() {
+        const stateSelect = document.getElementById("state").value;
+        const districtSelect = document.getElementById("district");
+        const tehsilSelect = document.getElementById("tehsil");
+        const villageSelect = document.getElementById("village");
+
+        tehsilSelect.innerHTML = '<option value="" disabled selected hidden>तहसील चुनें</option>';
+        villageSelect.innerHTML = '<option value="" disabled selected hidden>पहले तहसील चुनें</option>';
+
+        const selectedDistrict = districtSelect.value;
+        if (selectedDistrict && locationData[stateSelect][selectedDistrict]) {
+            for (let tehsil in locationData[stateSelect][selectedDistrict]) {
+                let option = document.createElement("option");
+                option.value = tehsil;
+                option.text = tehsil;
+                tehsilSelect.add(option);
+            }
+        }
+    }
+
+    function updateVillages() {
+        const stateSelect = document.getElementById("state").value;
+        const districtSelect = document.getElementById("district").value;
+        const tehsilSelect = document.getElementById("tehsil");
+        const villageSelect = document.getElementById("village");
+
+        villageSelect.innerHTML = '<option value="" disabled selected hidden>ग्राम चुनें</option>';
+
+        const selectedTehsil = tehsilSelect.value;
+        if (selectedTehsil && locationData[stateSelect][districtSelect][selectedTehsil]) {
+            const villages = locationData[stateSelect][districtSelect][selectedTehsil];
+            villages.forEach(function(village) {
+                let option = document.createElement("option");
+                option.value = village;
+                option.text = village;
+                villageSelect.add(option);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
