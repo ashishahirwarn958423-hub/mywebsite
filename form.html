@@ -367,6 +367,38 @@
         }
     }
 </script>
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault(); // फॉर्म को डायरेक्ट सबमिट होने से रोकें
 
+    const formData = new FormData(this);
+    const data = {};
+    
+    // फॉर्म के सारे डेटा को JSON ऑब्जेक्ट में बदलें
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    const actionUrl = this.getAttribute('action');
+
+    // डेटा को JSON फॉर्मेट में Google Apps Script पर भेजें
+    fetch(actionUrl, {
+        method: 'POST',
+        mode: 'no-cors', // CORS एरर से बचने के लिए
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        alert('डेटा सफलतापूर्वक भेज दिया गया है!');
+        this.reset(); // फॉर्म को खाली करने के लिए
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('कुछ गड़बड़ हुई, कृपया दोबारा प्रयास करें।');
+    });
+});
+</script>
 </body>
 </html>
