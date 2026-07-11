@@ -176,7 +176,7 @@
 <div class="form-container">
     <h2>संपर्क हेतु पंजीकरण फ़ॉर्म</h2>
     
-    <form action="https://script.google.com/macros/s/AKfycbw56Yl_Kai7ZTuadtVZBic-2Uv7sSf09o_MFDGxpLbFO4l9UvNQsu8_t4scmiO6C6R_/exec" method="POST">
+    <form action="registrationForm">
         <div class="form-grid">
             
             <div class="form-group">
@@ -397,6 +397,47 @@ document.querySelector('form').addEventListener('submit', function(e) {
     .catch(error => {
         console.error('Error:', error);
         alert('कुछ गड़बड़ हुई, कृपया दोबारा प्रयास करें।');
+    });
+});
+</script>
+    <script>
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // फॉर्म को पुराने तरीके से सबमिट होने से रोकना
+
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerText;
+    submitButton.disabled = true;
+    submitButton.innerText = "कृपया प्रतीक्षा करें...";
+
+    // यहाँ अपना Apps Script वाला Web App URL पेस्ट करें
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw2MOe9ajoljuMKr3M2NxtwOzl_0xFglXXO6_AW5Zw62dH1kQHL4VrzaKOe8ztyl2rG/exec';
+
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', // CORS एरर को रोकने के लिए
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        alert('बधाई हो! आपकी जानकारी सफलतापूर्वक सबमिट हो गई है।');
+        document.getElementById('registrationForm').reset(); // फॉर्म खाली करने के लिए
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('कुछ गड़बड़ हुई, कृपया दोबारा प्रयास करें।');
+    })
+    .finally(() => {
+        submitButton.disabled = false;
+        submitButton.innerText = originalButtonText;
     });
 });
 </script>
