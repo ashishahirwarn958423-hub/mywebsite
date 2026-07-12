@@ -400,56 +400,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
     });
 });
 </script>
- function doPost(e) {
-  try {
-    var data;
-    // अगर डेटा JSON फॉर्मेट में आया है
-    if (e.postData && e.postData.contents) {
-      data = JSON.parse(e.postData.contents);
-    } else {
-      // अगर डेटा नॉर्मल फॉर्म फॉर्मेट में आया है
-      data = e.parameter;
-    }
-    
-    var sheetName = "Sheet1";
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName(sheetName);
-    
-    if (!sheet) {
-      sheet = ss.getSheets()[0];
-    }
-    
-    // डेटा को शीट में सही क्रम में जोड़ना
-    sheet.appendRow([
-      new Date(),       // Column A: Timestamp
-      data.fullname,    // Column B: पूरा नाम
-      data.mobile,      // Column C: मोबाइल नंबर
-      data.state,       // Column D: राज्य
-      data.district,    // Column E: जिला
-      data.tehsil,      // Column F: तहसील
-      data.village      // Column G: गाँव
-    ]);
-    
-    return ContentService.createTextOutput(JSON.stringify({"result": "success", "message": "डेटा सफलतापूर्वक सेव हो गया!"}))
-                         .setMimeType(ContentService.MimeType.JSON)
-                         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-                         
-  } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({"result": "error", "error": error.toString()}))
-                         .setMimeType(ContentService.MimeType.JSON)
-                         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-  }
-}
-
-function doOptions(e) {
-  return ContentService.createTextOutput("")
-                       .setMimeType(ContentService.MimeType.TEXT)
-                       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-}
-
-function doGet(e) {
-  return ContentService.createTextOutput(JSON.stringify({"status": "सक्रिय"}))
-                       .setMimeType(ContentService.MimeType.JSON);
-}   
+ 
 </body>
 </html>
